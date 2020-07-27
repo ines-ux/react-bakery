@@ -13,10 +13,32 @@ class App extends React.Component {
 			activeTab: 'add',
 			items: []
 		};
-
+		// Pour tous changement dans un autre fichier on utilise bind
 		this.onClickTabAdd = this.onClickTabAdd.bind(this);
 		this.onClickTabList = this.onClickTabList.bind(this);
 		this.onClickTabPay = this.onClickTabPay.bind(this);
+		this.onAdd = this.onAdd.bind(this);
+	}
+
+	onAdd(price, input) {
+		// recuperer le state items et le stocker dans la variable items
+		let items = this.state.items;
+		// console.log('entrer onAdd');
+		// console.log('price', price);
+		// console.log('input', input);
+
+		// creer l'obj produit
+		let produit = {
+			name: input,
+			price: price
+		};
+		// ajouter l'obj produit au tableau items avec la méthode push
+		items.push(produit);
+		// console.log(' object item', item);
+		// changer le state items avec le nouveau tableau items
+		this.setState({
+			items: items
+		});
 	}
 
 	onClickTabAdd() {
@@ -43,6 +65,7 @@ class App extends React.Component {
 	}
 
 	render() {
+		console.log('app this.state', this.state.items);
 		return (
 			<div>
 				<p>
@@ -54,8 +77,12 @@ class App extends React.Component {
 				<Button children="Add" onClick={this.onClickTabAdd} />
 				<Button children="List" onClick={this.onClickTabList} />
 				<Button children="Pay" onClick={this.onClickTabPay} />
-				<Add />
-				<List />
+				{/* POUR PASSER UNE METHODE A UN COMPOSANT IL FAUT DANS LAPPELLE DU COMPOSANT CREER UN ATTRIBUT ET LUI DONNER LA VALEUR NECESSAIRE */}
+				{/* Pour notre ex: on a passé la méthode onAdd */}
+				<Add onAdd={this.onAdd} />
+
+				{/* "this veut dire la class" this.onAdd dans cette class on va utiliser la methode  onAdd */}
+				<List items={this.state.items} />
 				<Pay />
 			</div>
 		);
