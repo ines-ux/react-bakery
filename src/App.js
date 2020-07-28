@@ -4,6 +4,7 @@ import Add from './components/Add';
 import List from './components/List';
 import Pay from './components/Pay';
 import Button from './components/core/button';
+
 class App extends React.Component {
 	constructor(props) {
 		// à chercher ce que signifie super(props)
@@ -83,7 +84,7 @@ class App extends React.Component {
 
 				{/* "this veut dire la class" this.onAdd dans cette class on va utiliser la methode  onAdd */}
 				<List items={this.state.items} />
-				<Pay />
+				<Pay items={this.state.items} />
 			</div>
 		);
 	}

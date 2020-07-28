@@ -9,15 +9,17 @@ class Add extends React.Component {
 			input: '',
 			price: 1
 		};
-
+		// maniere de binder une fonction
 		this.onChangePrice = this.onChangePrice.bind(this);
 	}
+
 	onSubmit(price, input) {
 		// console.log('entrer onSubmit');
 		// console.log('price', price);
 		// console.log('input', input);
 		this.props.onAdd(price, input);
 	}
+
 	onChangePrice(val) {
 		this.setState({
 			price: val
@@ -34,9 +36,6 @@ class Add extends React.Component {
 					type="text"
 					id="name"
 					name="name"
-					minlength="4"
-					maxlength="8"
-					size="10"
 					// exécution du code, on a utiliser l'attribut onChange pour récupérer la valeur de l'input et la stocker dans la state de l'input
 					// on a éxécuté la fonction
 					onChange={(evt) => {
