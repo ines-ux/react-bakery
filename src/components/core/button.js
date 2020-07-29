@@ -6,6 +6,9 @@ class Button extends React.Component {
 				onClick={() => {
 					this.props.onClick();
 				}}
+				style={{
+					backgroundColor: this.props.isSelected ? 'blue' : 'grey'
+				}}
 			>
 				{this.props.children}
 			</button>

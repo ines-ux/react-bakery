@@ -75,16 +75,15 @@ class App extends React.Component {
 				</p>
 				{/* si on met les parentheses apres la fonction onclicktabadd, elle sera exécuté vu que le but n'est pas de l'éxécu */}
 				{/* ter alors on ne l'a met pas */}
-				<Button children="Add" onClick={this.onClickTabAdd} />
-				<Button children="List" onClick={this.onClickTabList} />
-				<Button children="Pay" onClick={this.onClickTabPay} />
+				<Button children="Add" isSelected={this.state.activeTab === 'add'} onClick={this.onClickTabAdd} />
+				<Button children="List" isSelected={this.state.activeTab === 'list'} onClick={this.onClickTabList} />
+				<Button children="Pay" isSelected={this.state.activeTab === 'pay'} onClick={this.onClickTabPay} />
 				{/* POUR PASSER UNE METHODE A UN COMPOSANT IL FAUT DANS LAPPELLE DU COMPOSANT CREER UN ATTRIBUT ET LUI DONNER LA VALEUR NECESSAIRE */}
 				{/* Pour notre ex: on a passé la méthode onAdd */}
-				<Add onAdd={this.onAdd} />
-
+				{this.state.activeTab === 'add' ? <Add onAdd={this.onAdd} /> : null}
+				{this.state.activeTab === 'list' ? <List items={this.state.items} /> : null}
+				{this.state.activeTab === 'pay' ? <Pay items={this.state.items} /> : null}
 				{/* "this veut dire la class" this.onAdd dans cette class on va utiliser la methode  onAdd */}
-				<List items={this.state.items} />
-				<Pay items={this.state.items} />
 			</div>
 		);
 	}
